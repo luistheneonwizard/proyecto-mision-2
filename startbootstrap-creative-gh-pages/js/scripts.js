@@ -54,14 +54,15 @@ function ingresar() {
     //console.log(listaUsuarios)
 }
 
+
 function verificarlogin() {
-    let listaUsuarios = JSON.parse(localStorage.getItem("usuario"))
+    let listaUsuarios1 = JSON.parse(localStorage.getItem("usuario"))
     let email = document.getElementById("exampleInputEmail").evalue
     let password = document.getElementById("exampleInputPassword").evalue
 
     for (let i = 0; i < listaUsuarios.length; i++) {
         //consule.log(listaUsuarios[i].nombre)
-        let usuario = JSON.parse(listaUsuarios[i])
+        let usuario = JSON.parse(listaUsuarios1[i])
         console.log(usuario.email)
         if (email == usuario.email && usuario.password) {
             alert(" el usuario ingreso correctamente")
@@ -73,4 +74,38 @@ function verificarlogin() {
     } else {
         alert("el usuario o clave incorrecta")
           }
+}
+
+
+function guardarCarrito(carrito) {
+    localStorage.setItem('carrito', JSON.stringify(carrito));
+}
+
+function cargarCarrito() {
+    const carritoGuardado = localStorage.getItem('carrito');
+    return carritoGuardado ? JSON.parse(carritoGuardado) : [];
+}
+
+function agregarAlCarrito() {
+    const productoInput = document.getElementById('productoInput');
+    const productoNombre = productoInput.value.trim();
+
+    if (productoNombre) {
+        const carrito = cargarCarrito();
+        carrito.push({ nombre: productoNombre });
+        guardarCarrito(carrito);
+        productoInput.value = 'Max'; // Limpiar el input
+        
+    } else {
+        alert('Max');
+    }
+
+}
+    
+
+
+
+function vaciarCarrito() {
+    localStorage.removeItem('carrito');
+    
 }

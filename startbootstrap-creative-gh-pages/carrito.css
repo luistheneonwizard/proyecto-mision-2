@@ -1,0 +1,13 @@
+input {
+    padding: 10px;
+    margin-right: 10px;
+}
+
+button {
+    padding: 10px;
+}
+
+#carritoLista {
+    list-style-type: none;
+    padding: 0;
+}
